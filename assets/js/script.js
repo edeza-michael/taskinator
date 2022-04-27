@@ -222,6 +222,24 @@ var saveTasks = function() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
+var loadTasks = function() {
+  // retrieve tasks from local storage
+  var savedTasks = localStorage.getItem("tasks");
+
+  if(!tasks) {
+    tasks = []
+    return false;
+  }
+
+  savedTasks = JSON.parse(savedTasks);
+
+  // loop through savedTasks Array
+  for (var i = 0; i <savedTasks.length; i++) {
+    // passs each task into the 'createTaskEl()' function
+    createTaskEl(savedTasks[i]);
+  }
+}
+
 // Create a new task
 formEl.addEventListener("submit", taskFormHandler);
 
